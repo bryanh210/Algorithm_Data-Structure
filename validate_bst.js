@@ -6,10 +6,25 @@
 // Both the left and right subtrees must also be binary search trees.
 
 
-
+//pseudo: return boolean
+// go to left, check if left < current, and current < right
+// if any of that is false, return check = false;
 
 function validBst(root){
-  while(root.left && root.right){
+let check = false;
 
+  function traverse(current){
+    if(! current.left || !current.right){
+      return;
+    }
+    if(current.left < current || current.left < current.right || current < current.right){
+      check;
+    } else {
+      check = true;
+    }
   }
+
+  traverse(root);
+
+  return check;
 }
