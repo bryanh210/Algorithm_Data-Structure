@@ -8,5 +8,6 @@
 // return result at the end
 
 function kthLargest(node){
-
+  let result = 0;
+  
 }
