@@ -7,26 +7,60 @@
 // The right subtree of a node contains only nodes with keys greater than the node's key.
 // Both the left and right subtrees must also be binary search trees.
 
+Now: Write and test myself
 
-//pseudo: return boolean
-// go to left, check if left < current, and current < right
-// if any of that is false, return check = false;
+// Traverse in-order
+// base case: if current is null
+//push them to an array
+// check if they're in order
+// if not, return false to break the loop
+
+class node{
+  constructor(value){
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+let two = new node(2);
+let one = new node(1);
+let three = new node(3);
+let five = new node(5);
+let zero = new node(0);
+
+two.left = one;
+two.right = three;
+three.right = five;
+five.left = zero;
+
+
+
 
 function validBst(root){
-let check = false;
+  let checkArray = [];
 
-  function traverse(current){
-    if(! current.left || !current.right){
-      return;
+  function treeTraversal(current){
+
+    if(!current){ return;}
+    else{
+    treeTraversal(current.left);
+    checkArray.push(current.value);
+    treeTraversal(current.right);
     }
-    if(current.left < current || current.left < current.right || current < current.right){
-      check;
-    } else {
-      check = true;
-    }
+
   }
 
-  traverse(root);
 
-  return check;
+treeTraversal(root);
+
+console.log(checkArray);
+
+
 }
+
+
+validBst(two);
+
+// why stackoverflow?
+// how to solve that?
