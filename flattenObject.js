@@ -21,34 +21,44 @@
 // }
 
 
-function flattenObj(obj){
-  let result = {};
+function flattenObj(obj) {
+    let result = {};
 
-  function recurse(substr, object){
-    let newKeyy;
-    if(substr.length === 0){
-      newKey = key;
-    } else{
-      newKey = substr + '.' + ke;
-    }
-    if(typeof o[key] === "number"){
-      result[newKey] = o[key]
-    } else{
-      recurse[newKey, o[key]]
-    }
-  }
+    function recurse(substr, o) {
 
-  return result;
+        for(let key in o) {
+            let newKey;
+            if(substr.length === 0) {
+                newKey = key;
+            } else {
+                newKey = substr + '.' + key;
+            }
+            if(typeof o[key] === "number") {
+                result[newKey] = o[key]
+            } else {
+                recurse(newKey, o[key])
+            }
+        }
+
+    }
+
+    recurse('', obj);
+
+    return result;
 }
 
 let test = {
-  a: { b: 1,
-        c: 2},
-      d: { x: {
-          y: 5,
-          z: 6
-      }}
-      w: 7,
+    a: { b : 1,
+         c : 2},
+    d: { x : {
+            y: 5,
+            z: 6
+        },
+        w: 7
+       },
     e: 8,
     o: 9
+
 }
+
+console.log(flattenObj(test))
