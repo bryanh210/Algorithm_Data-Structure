@@ -1,4 +1,4 @@
-#How to solve a problem?
+###How to solve a problem? ###
 
 1) Get the logic first. Go from the example, can traverse up down left right--
 
