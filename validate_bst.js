@@ -34,7 +34,16 @@ two.right = three;
 three.right = five;
 five.left = zero;
 
+/*
 
+//        2
+//      /   \
+//     1     3
+//            \
+//             5
+//            /
+//           0
+// */
 
 
 function validBst(root){
@@ -44,9 +53,14 @@ function validBst(root){
 
     if(!current){ return;}
     else{
+      // go all the way left, when hits null, return back up (2->1)
     treeTraversal(current.left);
+    // here push the current in (1)
     checkArray.push(current.value);
+    // check right, null again, come back up to 1, come back up to 2
     treeTraversal(current.right);
+
+    //at 2 now push 2 in, then go to all the way to right, null , push left (0)
     }
 
   }
@@ -61,6 +75,8 @@ console.log(checkArray);
 
 
 validBst(two);
+
+// result is [ 1, 2, 3, 0, 5 ]
 
 // why stackoverflow?
 // how to solve that?
