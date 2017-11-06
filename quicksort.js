@@ -9,7 +9,7 @@ function quickSort(input){
       // smaller number goes to left before the wall
       if(arr[pivot] > arr[i]){
         [arr[i], arr[wall]] = [arr[wall], arr[i]];
-        // increase wall to update wall position
+        // increase wall
         wall ++;
       }
     }
@@ -19,6 +19,9 @@ function quickSort(input){
     // we don't want the wall, append it at the end
     divide(wall+1, end)
   }
+
+  //first call
+  recurseSort(0, arr.length-1);
   
   return input;
 
