@@ -9,7 +9,8 @@ function quickSort(input){
       // smaller number goes to left before the wall
       if(arr[pivot] > arr[i]){
         [arr[i], arr[wall]] = [arr[wall], arr[i]];
-        // increase wall
+        // increase wall. porque?
+        // to keep the right track of the pivot when we swap wall and pivot
         wall ++;
       }
     }
@@ -22,7 +23,7 @@ function quickSort(input){
 
   //first call
   recurseSort(0, arr.length-1);
-  
+
   return input;
 
 }
