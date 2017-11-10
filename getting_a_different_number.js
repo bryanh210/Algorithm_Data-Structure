@@ -24,3 +24,15 @@ Constraints:
 1 ≤ arr.length ≤ MAX_INT
 0 ≤ arr[i] ≤ MAX_INT for every i, 0 ≤ i < MAX_INT
 [output] integer
+
+
+Strategy:
+Find smallest possible number that is not continuous and plus 1
+
+Find the smallest number possible that is not continuous
+Push that into a smallest
+Loop through the array, push 1 for every number, push them into smallest
+
+compare set and arr, return the missing number
+
+edge case: arr.length <2 && arr[0] !== 0, return 0
