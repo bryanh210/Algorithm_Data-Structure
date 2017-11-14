@@ -15,7 +15,7 @@ if(n === 0) return 1 // if it's 0 its considered 1 way, just in that case
 if(n ===1), return 1
 if( n ===2)  return 2
 
-
+Recursive solution:
 function climbStairs(input){
 
     function countWays(n){
@@ -34,3 +34,30 @@ function climbStairs(input){
 
 
 console.log(climbStairs(6));
+
+Memoized solution:
+
+function climbStairsMemo(input){
+    let cache = {};
+
+    function countWays(n){
+      // if cache[n]
+        if (cache[n] !== undefined){
+            return cache[n];
+        } else if (n === 0){
+            return 1;
+        } else if (n === 1){
+            return 1;
+        } else if (n === 2){
+            return 2;
+        }
+
+        cache[n] = countWays(n-1) + countWays(n-2) + countWays(n-3);
+        return cache[n];
+    }
+    return countWays(input);
+}
+
+console.time('MEMOIZATION: ');
+console.log(climbStairsMemo(20));
+console.timeEnd('MEMOIZATION: ');
