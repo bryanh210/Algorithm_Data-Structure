@@ -1,5 +1,5 @@
 //Lattice path:
-go from bottom right to top left
+go from bottom right to top left bc we know the end point (0,0)
 
 (0,0)
 

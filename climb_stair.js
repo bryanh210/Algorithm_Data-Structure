@@ -61,3 +61,35 @@ function climbStairsMemo(input){
 console.time('MEMOIZATION: ');
 console.log(climbStairsMemo(20));
 console.timeEnd('MEMOIZATION: ');
+
+
+if you have to jump up to steps, at odd number stairs (1,3,5), there are 0 steps to reach it
+
+
+TABULATION: bottom up
+
+function climbStairsTab(n, jumps){
+    let result = new Array(n+1);
+    result.fill(0);
+
+    result[0] = 1;
+
+    for (let i = 0; i < jumps.length; i++){
+        for (let j = jumps[i]; j < result.length; j++){
+            let sum = 0;
+            for (let k = 0; k <= i; k++){
+                sum += result[j - jumps[k]]
+            }
+            result[j] = sum;
+        }
+    }
+
+    return result[n];
+}
+
+console.time('TABULATION: ');
+console.log(climbStairsTab(20, [1,2,3]));
+console.timeEnd('TABULATION: ');
+ Approximately the same time as memoization
+
+// Time for tabulation here is O(n * m) m is size of the jumps array
