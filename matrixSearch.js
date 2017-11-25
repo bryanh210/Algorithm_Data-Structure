@@ -7,13 +7,16 @@ let matrix = [
   [23, 30, 34, 50]
 ]
 
+***Matrix.length here is 3!
+
 //brute force
 
 function traverseMatrix(matrix, target){
   // matrix.length is to loop through the row (x)
-  for(let i = 0; i < matrix.length ; i++){
-    // matrix[i].length is to loop through each item of
-    //row (y)
+  //length -1
+  for(let i = 0; i < matrix.length -1 ; i++){
+    // matrix[i].length is to loop through each column (y)
+
     for(let j = 0; j <matrix[i].length; j++){
       if(matrix[i][j] === target){
         return true;
@@ -24,3 +27,31 @@ function traverseMatrix(matrix, target){
 }
 
 console.log(traverseMatrix(matrix,5))
+
+
+
+Best way: runtime is O(n+m)
+
+var searchMatrix = function(matrix, target) {
+    // initialize to the first row: row = matrix.length-1
+    let row = 0;
+    // initialize to the first column: matrix[row].length-1
+    let column = matrix[row].length -1;
+
+    if(matrix.length === 0 || matrix[0].length ===0) { return false;}
+
+  // while loop; column >=0 just to serve as condition
+    while(row < matrix.length && column >= 0){
+        if(target === matrix[row][column]) {return true;}
+        else if(target > matrix[row][column]){ row++}
+        else{
+            column --;
+        }
+
+    }
+    return false;
+
+};
+
+
+//next time: solve it in log(n) times
