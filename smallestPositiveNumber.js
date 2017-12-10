@@ -6,6 +6,7 @@
 
 
 //here, the index is the most important piece
+//ONLY WORK ON SORTED ARRAY
 
 function missingNumber(arr){
    if(arr.length === 0){ throw "no positive number found" }
