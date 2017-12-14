@@ -13,6 +13,8 @@ then assign it the next available color in the colors array
 function coloringGraph(graph,colors){
   let illegalColor = new Set();
 
+
+// use forEach to loop thru set
   graph.forEach((node) =>{
 
 

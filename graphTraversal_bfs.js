@@ -46,6 +46,18 @@ function dfs(vertex){
   while(stack.length > 0){
     current = stack.pop();
 
-    if(current)
+    if(current.left){
+      stack.push(current.left);
+      visited.add(current.left);
+    }
+
+    if(current.right){
+      stack.push(current.left);
+      visited.add(current.left);
+    }
+
+    result.push(current)
   }
+  return result;
+
 }

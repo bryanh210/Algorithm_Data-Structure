@@ -124,6 +124,51 @@ console.log(binarySearch([1,2,3,4,5,6,7,8,9,10], 4))
 100 elements [ 0.52, 0.93, 0.01, 0.33] 00, 10
 
 0, 0.1, 0.2, 0.3 .... 0.9, 1
+// check if a directed graph has cycle:
+
+
+
+function DAGCycle(vertex){
+  let stack = [vertex];
+  let visited = new Set();
+  let current;
+
+
+  // put the current node into graph
+  visited.get(vertex[0]);
+  while(stack.length > 0){
+    // after look left and right, add to the stack
+    // it comes up and pop => start all over again
+    current = stack.pop();
+
+    if(current.left){
+      // should current now = current.left?
+      stack.push(current.left);
+      if(visited.has(current.left)){
+        // if current.left already exists in the set,
+        // that means cycle exists
+        return true;
+      } else{
+        visited.get(current.left)
+      }
+    }
+
+    if(current.right){
+      stack.push(current.right);
+      if(visited.has(current.right)){
+        // if current.left already exists in the set,
+        // that means cycle exists
+        return true;
+      } else{
+        visited.get(current.right)
+      }
+    }
+
+//within the loop, check if it's true
+// if there's no evidence it's a loop, return false
+    return false;
+  }
+}
 Ex:Climb stairs
 You can move up 1,2 or 3 stairs at a time
 6 steps
@@ -219,6 +264,52 @@ console.timeEnd('TABULATION: ');
  Approximately the same time as memoization
 
 // Time for tabulation here is O(n * m) m is size of the jumps array
+/*
+First, check if any node's neighbor points to itself => throw error
+(because you don't want to update the color of a node)
+
+have an illegal Color set,
+if there exists a color at node.neighbor, add that to the illegalColor set
+then assign it the next available color in the colors array
+
+
+*/
+
+
+function coloringGraph(graph,colors){
+  let illegalColor = new Set();
+
+  graph.forEach((node) =>{
+
+
+    // prevent self looping
+    if(node.neighbors.has(node)){
+      throw new Error("illegal Coloring")
+    }
+
+    node.neighbors.forEach((node) =>{
+      if(node.color){
+        illegalColor.add(node.color)
+      }
+    })
+
+    for(let i = 0; i< colors.length; i++){
+      let color = colors[i];
+
+      if(!illegalColor.has(color)){
+        node.color = color;
+        // break because I don't wanna keep assigning colors to the same node
+        break;
+      }
+    }
+
+
+  })
+
+
+
+
+}
 Dynamic programming
 
 max_cons_sum
@@ -413,6 +504,11 @@ let test = {
 }
 
 console.log(flattenObj(test))
+foo() -> generate number from 1 ->5
+bar() -> generate number from 1->7
+
+Module and recursion
+Create bar from foo
 function getDifferentNumber(arr){
   debugger;
   let compare = new Set();
@@ -497,6 +593,57 @@ Output: Graph
   Edges hash:
   {1: vertex 2
   3: vertex 4}
+// BFS: first you have a queue. The first node (vertex) is in the queue. Marked it as visited
+// Once you pop it off, you check if it has children, push the children into the queue.
+// Marked the children as visited
+
+
+function bfs(vertex){
+  let result = [];
+  let queue = [vertex];
+  let visited = new Set();
+  let current;
+
+
+
+  visited.add(queue[0]);
+
+  while(queue.length > 0){
+    // shift that node out
+    current = queue.shift();
+
+    if(current.left){
+      queue.push(current.left);
+      visited.add(current.left);
+    }
+
+    if(current.right){
+      queue.push(current.right);
+      visited.add(current.right;)
+    }
+
+
+
+      result.push(current)
+  }
+  return result;
+}
+
+
+
+function dfs(vertex){
+  let result = [];
+  let stack = [vertex];
+  let visited = new Set();
+  let current;
+
+
+  while(stack.length > 0){
+    current = stack.pop();
+
+    if(current)
+  }
+}
 //Building out a heap
 
 class Minheap{
@@ -982,6 +1129,94 @@ var wordBreak = function(s, wordDict) {
 
     return possible[s.length] === true;
 };
+/* A Queue object for queue-like functionality over JavaScript arrays. */
+var Queue = function() {
+    this.items = [];
+};
+Queue.prototype.enqueue = function(obj) {
+    this.items.push(obj);
+};
+Queue.prototype.dequeue = function() {
+    return this.items.shift();
+};
+Queue.prototype.isEmpty = function() {
+    return this.items.length === 0;
+};
+
+/*
+ * Performs a breadth-first search on a graph
+ * @param {array} graph - Graph, represented as adjacency lists.
+ * @param {number} source - The index of the source vertex.
+ * @returns {array} Array of objects describing each vertex, like
+ *     [{distance: _, predecessor: _ }]
+ */
+var doBFS = function(graph, source) {
+    var bfsInfo = [];
+
+    for (var i = 0; i < graph.length; i++) {
+	    bfsInfo[i] = {
+	        distance: null,
+	        predecessor: null };
+    }
+
+    bfsInfo[source].distance = 0;
+
+    var queue = new Queue();
+    queue.enqueue(source);
+
+
+    while(queue.length > 0){
+      let current = queue.dequeue();
+
+      for(let i = 0; i < graph.length; i++){
+        let coordinate = graph
+      }
+    }
+
+    // Traverse the graph
+
+    // As long as the queue is not empty:
+    //  Repeatedly dequeue a vertex u from the queue.
+    //
+    //  For each neighbor v of u that has not been visited:
+    //     Set distance to 1 greater than u's distance
+    //     Set predecessor to u
+    //     Enqueue v
+    //
+    //  Hint:
+    //  use graph to get the neighbors,
+    //  use bfsInfo for distances and predecessors
+
+    return bfsInfo;
+};
+
+
+var adjList = [
+    [1],
+    [0, 4, 5],
+    [3, 4, 5],
+    [2, 6],
+    [1, 2],
+    [1, 2, 6],
+    [3, 5],
+    []
+    ];
+var bfsInfo = doBFS(adjList, 3);
+for (var i = 0; i < adjList.length; i++) {
+    println("vertex " + i + ": distance = " + bfsInfo[i].distance + ", predecessor = " + bfsInfo[i].predecessor);
+}
+
+/*
+Program.assertEqual(bfsInfo[0], {distance: 4, predecessor: 1});
+Program.assertEqual(bfsInfo[1], {distance: 3, predecessor: 4});
+Program.assertEqual(bfsInfo[2], {distance: 1, predecessor: 3});
+Program.assertEqual(bfsInfo[3], {distance: 0, predecessor: null});
+Program.assertEqual(bfsInfo[4], {distance: 2, predecessor: 2});
+Program.assertEqual(bfsInfo[5], {distance: 2, predecessor: 2});
+Program.assertEqual(bfsInfo[6], {distance: 1, predecessor: 3});
+Program.assertEqual(bfsInfo[7], {distance: null, predecessor: null});
+*/
+Binary tree-- each node is a house. You can only rob
 // http://www.geeksforgeeks.org/kth-largest-element-in-bst-when-modification-to-bst-is-not-allowed/
 
 // pseudo:
@@ -995,6 +1230,19 @@ function kthLargest(node){
   let result = 0;
   
 }
+// You have an array of Integer
+// Find the largest sum that is non contiguous
+// [2,4,1,2,3,5] -> 11
+// [5,3] -> 5
+//
+// Dynamic programming:'
+
+
+what to consider: What's the maximum sum up to that point:
+
+So: [2,-4,1,-2,3,5]
+=> Maximum last sum up to that point:
+    [2,4,4,4,7,9]
 function largestPath(root){
   let result = 0;
 
@@ -1844,6 +2092,7 @@ function bfs(vertex){
 
 
 //here, the index is the most important piece
+//ONLY WORK ON SORTED ARRAY
 
 function missingNumber(arr){
    if(arr.length === 0){ throw "no positive number found" }
