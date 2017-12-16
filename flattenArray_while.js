@@ -1,7 +1,8 @@
 function flattenArray(arr) {
   var array = [];
   while(arr.length) {
-    // pop from the beginning
+    // pop from the beginning EVERY TIME
+    // THIS CHANGES THE ARR: IMPORTANT
     var value = arr.shift();
     console.log(value, "value");
     if(Array.isArray(value)) {
@@ -17,3 +18,6 @@ function flattenArray(arr) {
   }
   return array;
 }
+
+
+/* RECURSION ==== WHILE */
