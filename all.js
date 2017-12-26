@@ -124,51 +124,6 @@ console.log(binarySearch([1,2,3,4,5,6,7,8,9,10], 4))
 100 elements [ 0.52, 0.93, 0.01, 0.33] 00, 10
 
 0, 0.1, 0.2, 0.3 .... 0.9, 1
-// check if a directed graph has cycle:
-
-
-
-function DAGCycle(vertex){
-  let stack = [vertex];
-  let visited = new Set();
-  let current;
-
-
-  // put the current node into graph
-  visited.get(vertex[0]);
-  while(stack.length > 0){
-    // after look left and right, add to the stack
-    // it comes up and pop => start all over again
-    current = stack.pop();
-
-    if(current.left){
-      // should current now = current.left?
-      stack.push(current.left);
-      if(visited.has(current.left)){
-        // if current.left already exists in the set,
-        // that means cycle exists
-        return true;
-      } else{
-        visited.get(current.left)
-      }
-    }
-
-    if(current.right){
-      stack.push(current.right);
-      if(visited.has(current.right)){
-        // if current.left already exists in the set,
-        // that means cycle exists
-        return true;
-      } else{
-        visited.get(current.right)
-      }
-    }
-
-//within the loop, check if it's true
-// if there's no evidence it's a loop, return false
-    return false;
-  }
-}
 Ex:Climb stairs
 You can move up 1,2 or 3 stairs at a time
 6 steps
@@ -279,6 +234,8 @@ then assign it the next available color in the colors array
 function coloringGraph(graph,colors){
   let illegalColor = new Set();
 
+
+// use forEach to loop thru set
   graph.forEach((node) =>{
 
 
@@ -309,6 +266,31 @@ function coloringGraph(graph,colors){
 
 
 
+}
+Cycle in an undirected graph:
+
+Traverse through it, if you hit the same node twice => cycle.
+Why? Because 1 time doesn't say enough since you basically can travel back and forth
+// check if a directed graph has cycle:
+
+
+
+function DAGCycle(vertex){
+  let stack = [vertex];
+  let visited = new Set();
+  let current;
+
+
+  // put the current node into graph
+  visited.get(vertex[0]);
+  while(stack.length > 0){
+  //rewrite it
+    }
+
+//within the loop, check if it's true
+// if there's no evidence it's a loop, return false
+    return false;
+  }
 }
 Dynamic programming
 
@@ -403,6 +385,44 @@ function findClosingParen(sentence, position){
 
 
 console.log(findClosingParen("()fuck", 0));
+// Find duplicates in array
+
+// use binarySearch
+
+function findDuplicates(arr1, arr2) {
+
+ let duplicates = [];
+  for (let num of arr1) {
+    if (binarySearch(num,arr2)!==-1) duplicates.push(num);
+  }
+  return duplicates;
+
+
+  function binarySearch(target,arr){
+    // keep index
+    let max = arr.length -1, min = 0, mid;
+    while(min <= max){
+      mid = Math.floor((max+min)/2);
+        if(target === arr[mid]){
+          return mid
+        }
+        else if(target < arr[mid]){
+          max = mid -1
+
+          } else{
+            min = mid +1
+          }
+      }
+
+    // IF I DON'T RETURN -1 OUTSIDE, I WILL NEVER GET TO -1
+    return -1
+    }
+
+ }
+
+
+let arr1 = [1, 2, 3], arr2 = [3, 4, 50, 22];
+console.log(findDuplicates(arr1, arr2))
 // binary tree
 
 var minDepth = function(root) {
@@ -440,6 +460,63 @@ find maximum of things traversed on the left, and on the right.
 
 
 */
+function flattenArray(arr){
+  let result = [];
+  arr.forEach((item) =>{
+    if(Array.isArray(item)){
+      result = result.concat(flattenArray(item))
+    } else{
+      result.push(item)
+    }
+  })
+
+
+return result
+
+}
+
+
+console.log(flattenArray([0,[1,3], [[5,6]], 4]))
+function flattenArray(arr){
+  let result = [];
+  arr.forEach((item) =>{
+    if(Array.isArray(item)){
+      result = result.concat(...item)
+    } else{
+      result.push(item)
+    }
+  })
+
+
+return result
+
+}
+
+
+console.log(flattenArray([0,[1,3], [[5,6]], 4]))
+function flattenArray(arr) {
+  var array = [];
+  while(arr.length) {
+    // pop from the beginning EVERY TIME
+    // THIS CHANGES THE ARR: IMPORTANT
+    var value = arr.shift();
+    console.log(value, "value");
+    if(Array.isArray(value)) {
+      // this line preserve the order
+      console.log(arr, "before arr")
+      //concat the array after the value, bringing up that array
+      arr = value.concat(arr);
+      console.log(arr, "after arr")
+    } else {
+      array.push(value);
+      console.log(array, "array")
+    }
+  }
+  return array;
+}
+
+
+/* RECURSION ==== WHILE */
 //Flatten nested object
 // using helper recusrion
 
@@ -527,6 +604,38 @@ function getDifferentNumber(arr){
 }
 
 console.log(getDifferentNumber([0,1,2,3]))
+function arrayOfArrayProducts(arr) {
+  // in case arr.length === 0 or only has 1 item
+  if(arr.length < 2){
+    return []
+  }
+
+  let arrayOfProducts = [];
+
+  let productSoFar = 1;
+
+
+  // this adds up all the right
+  // PAY ATTENTION: the condition of the foor loop: <= arr.length-1. it must hit that
+  for(let i = 0; i<= arr.length-1 ; i++){
+    // this is to put the result at the right position
+    arrayOfProducts[i] = productSoFar;
+    productSoFar *= arr[i]
+  }
+
+
+  // PAY ATTENTION: the condition of the foor loop: >=0. it must hit that
+  productSoFar = 1;
+  for(let j = arr.length -1; j >= 0; j--){
+    arrayOfProducts[j] *= productSoFar;
+    productSoFar *= arr[j]
+  }
+
+  return arrayOfProducts;
+}
+
+
+console.log(arrayOfArrayProducts([8, 10, 2]))
 Getting a Different Number
 
 Given an array arr of unique nonnegative integers, implement a function getDifferentNumber that finds the smallest nonnegative integer that is NOT in the array.
@@ -641,9 +750,145 @@ function dfs(vertex){
   while(stack.length > 0){
     current = stack.pop();
 
-    if(current)
+    if(current.left){
+      stack.push(current.left);
+      visited.add(current.left);
+    }
+
+    if(current.right){
+      stack.push(current.left);
+      visited.add(current.left);
+    }
+
+    result.push(current)
+  }
+  return result;
+
+}
+// DO NOT EDIT
+// Vertex class
+class Vertex{
+  constructor(id){
+    this.id = id !== undefined? id : null;
+    this.edges = [];
   }
 }
+
+// DO NOT EDIT
+// generate graph from int and array of arrays
+function deserialize(n, edges){
+  let vertices = {};
+  while (n--){
+    vertices[n] = new Vertex(n);
+  }
+  let v1;
+  let v2;
+  edges.forEach(edge => {
+    v1 = edge[0];
+    v2 = edge[1];
+    vertices[v1].edges.push(vertices[v2]);
+    vertices[v2].edges.push(vertices[v1]);
+  });
+
+  return vertices[0];
+}
+
+// DO NOT EDIT
+// sampleGraph is the vertex with id 0
+const sampleGraph = deserialize(8, [[0, 1], [1, 2], [2, 4], [3, 5], [4, 5],
+                                    [1, 7], [4, 6], [4, 7], [5, 6]]);
+
+/*
+ *     Example Graph:
+ *
+ *              2
+ *            /   \
+ *    0 ~~~ 1       4  ~~~ 5 ~~~ 3
+ *            \   /   \   /
+ *              7       6
+ */
+
+
+
+console.log(sampleGraph);
+
+function dfs(vertex) {
+  // create a set. if that set has the node => true
+
+  let result = [];
+  let stack = [vertex];
+  let visited = new Set();
+  let current;
+
+  visited.add(stack[0])
+
+  while(stack.length > 0){
+    current = stack.pop();
+
+   current.edges.forEach((node)=>{
+     // each edge contains array of nodes
+     // node is a an item on the array
+     if(!visited.has(node)){
+      visited.add(node);
+     stack.push(node);
+     }
+
+
+   })
+
+    result.push(current.id);
+  }
+  return result;
+}
+
+console.log(dfs(sampleGraph))
+
+
+
+
+/*
+function DAGCycle(vertex){
+  let stack = [vertex];
+  let visited = new Set();
+  let current;
+
+
+  // put the current node into graph
+  visited.get(vertex[0]);
+  while(stack.length > 0){
+    // after look left and right, add to the stack
+    // it comes up and pop => start all over again
+    current = stack.pop();
+
+    if(current.left){
+      // should current now = current.left?
+      stack.push(current.left);
+      if(visited.has(current.left)){
+        // if current.left already exists in the set,
+        // that means cycle exists
+        return true;
+      } else{
+        visited.get(current.left)
+      }
+    }
+
+    if(current.right){
+      stack.push(current.right);
+      if(visited.has(current.right)){
+        // if current.left already exists in the set,
+        // that means cycle exists
+        return true;
+      } else{
+        visited.get(current.right)
+      }
+    }
+
+//within the loop, check if it's true
+// if there's no evidence it's a loop, return false
+    return false;
+  }
+}
+*/
 //Building out a heap
 
 class Minheap{
@@ -1259,6 +1504,122 @@ function largestPath(root){
 
   return result;
 }
+/*********************************************************
+ * CODE INSTRUCTIONS:                                    *
+ * 1) The method findLargestSmallerKey you're            *
+ *    asked to implement is located at line 26.          *
+ * 2) Use the helper code below to implement it.         *
+ * 3) In a nutshell, the helper code allows you to       *
+ *    to build a Binary Search Tree.                     *
+ * 4) Jump to line 71 to see an example for how the      *
+ *    helper code is used to test findLargestSmallerKey. *
+ *********************************************************/
+
+
+// Constructor to create a new Node
+function Node(key) {
+  this.key = key;
+  this.parent = null;
+  this.left = null;
+  this.right = null;
+}
+
+// Constructor to create a new BST
+function BinarySearchTree() {
+  this.root = null;
+}
+
+BinarySearchTree.prototype.findLargestSmallerKey = function(num) {
+
+  let keepTrack  = -1;
+
+  function recursiveHelper(num, node){
+
+
+    // don't use !node.left or !node.right because it will return out first before keepTrack can be updated
+    if(!node){ return keepTrack};
+
+    if(num <= node.key){
+      recursiveHelper(num, node.left);
+
+    } else if (num > node.key){
+      keepTrack = node.key;
+      console.log(keepTrack)
+
+      recursiveHelper(num, node.right);
+
+    }
+
+  }
+  //this: refer to current scope
+
+  //this.root and not "root" b/c root isn't defined here as a keyword
+  recursiveHelper(num, this.root );
+  return keepTrack;
+}
+
+  // check if the num is smaller, equal or bigger than root node
+  // if it's smaller, go left, if it's bigger, go right, if it's equal, return rootnode.key
+
+  //recursively do so until you hit the base case of there's no more right or left child to that node
+
+ // return -1
+
+
+// Creates a new node by a key and inserts it to the BST
+BinarySearchTree.prototype.insert = function(key) {
+  var root = this.root;
+
+  // 1. If the tree is empty, create the root
+  if(!root) {
+      this.root = new Node(key);
+      return;
+  }
+
+  // 2) Otherwise, create a node with the key
+  //    and traverse down the tree to find where to
+  //    to insert the new node
+  var currentNode = root;
+  var newNode = new Node(key);
+
+  while(currentNode !== null) {
+      if(key < currentNode.key) {
+          if(!currentNode.left) {
+              currentNode.left = newNode;
+              newNode.parent = currentNode;
+              break;
+          } else {
+              currentNode = currentNode.left;
+          }
+      } else {
+          if(!currentNode.right) {
+              currentNode.right = newNode;
+              newNode.parent = currentNode;
+              break;
+          } else {
+              currentNode = currentNode.right;
+          }
+      }
+  }
+}
+
+/*********************************************
+ * Driver program to test above function     *
+ *********************************************/
+
+// Create a Binary Search Tree
+var bst = new BinarySearchTree();
+bst.insert(20);
+bst.insert(9);
+bst.insert(25);
+bst.insert(5);
+bst.insert(12);
+bst.insert(11);
+bst.insert(14);
+
+var result = bst.findLargestSmallerKey(17);
+
+console.log("Largest smaller number is " + result);
 // Lattice path helper: how many possible path to go from the start to the end ( from top left to bottom right)
 //
 // traverse from top left to bottom right of a matrix
@@ -1814,6 +2175,7 @@ let check = false;
 
   return check;
 }
+post_order_DFS
 /*
 Implement the power function of the base a and the expo b
 
@@ -2004,6 +2366,17 @@ function power(a,b){
 }
 
 squrt
+need 3 thing:
+pivot
+wall: To the left everything is smaller, to the right everything is bigger
+current
+
+Always swap current with wall
+Compare current to pivot.
+If current < pivot, current increment +1;
+if current > pivot, current
+
+sorted
 
 // in place
 function quickSort(input){
