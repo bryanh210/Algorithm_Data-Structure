@@ -1,4 +1,5 @@
-
+// compare pivot with a[i]. if a[i] is smaller, then put it to left of wall
+// at the end, switch wall and pivot
 // in place
 function quickSort(input){
   function divide(start,end){
@@ -22,7 +23,7 @@ function quickSort(input){
   }
 
   //first call
-  recurseSort(0, arr.length-1);
+  divide(0, arr.length-1);
 
   return input;
 
