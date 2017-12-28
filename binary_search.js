@@ -26,12 +26,10 @@ function binarySearch(arr,target){
 
     } else if(target > arr[guess]) {
       min = guess + 1;
-    } else{
-      return -1;
     }
   }
 
-
+    return -1
 }
 
 
