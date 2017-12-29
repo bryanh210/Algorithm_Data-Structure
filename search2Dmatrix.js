@@ -39,6 +39,10 @@ Given target = 3, return true.
   }
 
 function matrixSearch(mtx, target){
+
+  if(mtx.length < 1){ return false }
+
+  
   let check = true;
 
   for(let i = 0; i < mtx.length; i++){
