@@ -57,7 +57,7 @@ if left and right are both null, that means you cant find
 either node, so you return null
 
 If both failed, it means that you might have just entered in
-1 item, so that item is itself's common ancestor
+1 item or the other item doesn't exist, so that item is itself's common ancestor
 
 
 
