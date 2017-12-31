@@ -17,28 +17,6 @@
 
 
 // not treeNode()!
-class treeNode{
-  constructor(value){
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-const five = new treeNode(5);
-const two = new treeNode(2);
-const seven = new treeNode(7);
-const four = new treeNode(4);
-const eight = new treeNode(8);
-const nine = new treeNode(9);
-
-
-five.left = two;
-five.right = seven;
-seven.left = four;
-
-seven.right = eight;
-eight.right = nine;
 
 
 
