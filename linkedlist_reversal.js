@@ -29,7 +29,7 @@ prev  a -> b -> c
 prev  a prev b -> c
 a    a  prev b -> c
 a    <- prev b -> c
-
+ remember : 231
 
 
 function reverseLinkedList(sll){
@@ -48,7 +48,7 @@ function reverseLinkedList(sll){
     prev = sll.head;
 
 
-return sll; 
+return sll;
 }
 
 

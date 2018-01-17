@@ -5,7 +5,9 @@
 
 
 function stringPermutations(str) {
-  let result = [""]
+
+
+  let result = [""];
 
   for(let strIndex = 0; strIndex < str.length; strIndex++) {
 
@@ -18,6 +20,7 @@ function stringPermutations(str) {
         temp.push(newStr);
       }
     }
+    // result to temp cuz temp increases each item
     result = temp;
   }
   return result;

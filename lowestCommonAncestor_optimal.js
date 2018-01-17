@@ -36,15 +36,19 @@ var lowestCommonAncestor = function(root, node1, node2) {
   let left = lowestCommonAncestor(root.left, node1, node2);
   let right = lowestCommonAncestor(root.right, node1, node2);
 
-  if(left && right ){ return root};
+  if(left && right ){
+     // p and q are on two different side of root node.
+     return root
+   };
   if(!left && !right) { return null};
 
-  //else
+  //else p or q is on the the same side
+  // the result of left and right will be the "root" of left or right
   return left ? left : right
 
 };
 
-console.log(lowestCommonAncestor(five,four, eight))
+console.log(lowestCommonAncestor(five,four, nine))
 console.log(lowestCommonAncestor(five,four))
 
 /*
@@ -58,6 +62,9 @@ either node, so you return null
 
 If both failed, it means that you might have just entered in
 1 item or the other item doesn't exist, so that item is itself's common ancestor
+
+*NEW:
+IF BOTH LEFT AND RIGHT RETURN UP, THAT'S THE ROOT
 
 
 
