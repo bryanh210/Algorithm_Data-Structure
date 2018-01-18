@@ -4,7 +4,7 @@ function flattenArray(arr) {
     // pop from the beginning EVERY TIME
     // THIS CHANGES THE ARR: IMPORTANT
     var value = arr.shift();
-    
+
     if(Array.isArray(value)) {
       // this line preserve the order
 
@@ -21,3 +21,20 @@ function flattenArray(arr) {
 
 
 /* RECURSION ==== WHILE */
+
+
+
+function flattenArray(arr){
+  let result = [];
+
+  while(arr.length > 0){
+    let value = arr.shift();
+    if(Array.isArray(value)){
+      arr = value.concat(arr)
+    }else{
+      arr.push(value)
+    }
+  }
+
+  return arr;
+}
