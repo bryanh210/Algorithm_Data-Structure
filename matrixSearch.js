@@ -12,10 +12,10 @@ let matrix = [
 //brute force
 
 function traverseMatrix(matrix, target){
-  // matrix.length is to loop through the row (x)
+  // matrix.length is to loop through the column (y) because it can go down. start at (0,0)
   //length -1
   for(let i = 0; i < matrix.length -1 ; i++){
-    // matrix[i].length is to loop through each column (y)
+    // matrix[i].length is to loop through each row (x)
 
     for(let j = 0; j <matrix[i].length; j++){
       if(matrix[i][j] === target){
