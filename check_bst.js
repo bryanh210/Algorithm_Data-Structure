@@ -4,6 +4,35 @@ all the way to the top.
 => DFS is more space efficient
 */
 
+function dfs(root){
+  let result = [];
+
+  function traverse(current){
+    if(!current){return;}
+    traverse(current.left);
+    result.push(current);
+    traverse(current.right);
+  }
+  traverse(root);
+  return result;
+}
+
+function validateBST(root){
+
+    if(!root){return;}
+    let left = traverse(current.left);
+    let right = traverse(current.right);
+
+    return (left < current && right > current)
+}
+
+
+
+
+
+
+
+
 
 function dfs(root){
   let result = [];

@@ -78,3 +78,20 @@ meticulous, showing great attention to detail";
 
 
 console.log(test(str))
+
+
+
+2) Why is lookup time in Hash table and Set O(1)?
+Because of the hash function. When you hash, you put each item into
+a bucket and there's only 1 way to do so going through that hash function.
+So when you want to look up the item, it'll take the item and return the
+index.
+(Ascii number % length of array)
+
+
+3) When to use bfs vs dfs?
+Bfs: to find the shortest path cuz all the nodes that have distance X
+to the source node are processed before all the nodes that have distance X+1
+
+
+DFS: to check existence for a path
