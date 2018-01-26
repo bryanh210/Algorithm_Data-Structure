@@ -36,6 +36,8 @@ var friendships_input = [
 // //   9: []
 // // }
 
+HASH MAP ELIMINATES DUPLICATES
+
 function findNetwork(employees_input, friendships_input) {
   let result = {};
 

@@ -1,6 +1,8 @@
 GOOD WAY TO ABSTRACT WRITING CODE. ELIMINATE WET CODE.
 WHEN YOU REFACTOR CODE, YOU DON'T HAVE TO CHANGE THE FUNCTIONS. IT SAVES TIME
 
+FUNCTION WITHIN A FUNCTION CALL.
+
 
 function forEach(collection, callback) {
   if(collection.length === undefined) {
