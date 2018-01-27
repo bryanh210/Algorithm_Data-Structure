@@ -211,3 +211,29 @@ function print(node) {
 
 
 TreeEach(node4, print)
+
+
+ANOTHER THING:
+
+function TreeMapValues(node, callback) {
+
+  function recurse(current) {
+    if(current === null) {
+      return null
+    }
+    let newNode = new TreeNode(callback(current.val));
+    newNode.left = recurse(current.left)
+    newNode.right = recurse(current.right)
+    return newNode;
+  }
+
+  return recurse(node);
+
+}
+
+function square(num) {
+  return num * num;
+}
+
+
+console.log(TreeEach(TreeMapValues(node4, square), reverse))
