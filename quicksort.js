@@ -17,13 +17,15 @@ function quickSort(input){
     }
     // at the end switching pivot and wall
     [arr[wall], arr[pivot]] = [arr[pivot], arr[wall]];
+
+    // after switching wall and pivot, repeat the process for both left and right half
     divide(0, wall-1);
     // we don't want the wall, append it at the end
     divide(wall+1, end)
   }
 
   //first call
-  divide(0, arr.length-1);
+  divide(0, input.length-1);
 
   return input;
 
