@@ -31,3 +31,30 @@ contains(string){
   // IN means that if it's in an object/ array, return true;
   return this.endSymbol in node;
 }
+
+
+// insert method:
+//
+// constructor{
+//   function trieNode(val){
+//     isEnd = false;
+//     children = new HashMap();
+//   }
+// }
+//
+// function Trie{
+//   TrieNode.root = new trieNode();
+// }
+//
+// function insert(word){
+//   TrieNode.current = root;
+//   for(let i = 0; i < word.length; i++){
+//     // charAt return the word at the index of string
+//     let character = word.charAt(i);
+//
+// // if c isn't
+//     if(!current.children.contains(character)){
+//       current.childrenput(c, newTrieNode)
+//     }
+//   }
+// }
