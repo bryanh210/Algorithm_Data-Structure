@@ -12,7 +12,7 @@ There are 2 sets in this problem. One set containing the last item, one set is t
 
 
 function stringPerm(string){
-  //base case.
+  //base case because if we keep slicing back, we will eventually run into where there's nowhere else to slice
   if(string.length <= 1) { return new Set(string)};
   // -1 is except the last character
   let allCharsExceptLast = string.slice(0,-1);
@@ -28,6 +28,8 @@ function stringPerm(string){
       permSet.add(permutation)
     }
   })
+
+  let permuCharsOfAllExceptLast = stringPerm(allCharsExceptLast);
 
   return permSet;
 }
