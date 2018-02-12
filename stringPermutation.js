@@ -12,7 +12,8 @@ There are 2 sets in this problem. One set containing the last item, one set is t
 
 
 function stringPerm(string){
-  //base case because if we keep slicing back, we will eventually run into where there's nowhere else to slice
+  //base case because if we keep slicing back, we will eventually run into where there's only 1 letter. We can't slice that bc allCharsExceptLast === lastChar
+  //no equivalent to !string
   if(string.length <= 1) { return new Set(string)};
   // -1 is except the last character
   let allCharsExceptLast = string.slice(0,-1);
