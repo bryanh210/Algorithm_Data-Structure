@@ -1,5 +1,5 @@
 function longestPalindromicSubstring(string){
-  debugger
+  if(string.length === 0) return " ";
   let longest ="";
   for(let i = 0; i<string.length; i++){
     for(let j =i; j<string.length; j++){
@@ -26,5 +26,6 @@ function isPalindrome(string){
   return true
 }
 
-console.log(isPalindrome("ac"))
-console.log(isPalindrome("aba"))
+console.log(longestPalindromicSubstring(" "))//''
+console.log(longestPalindromicSubstring("abacc"))//aba
+console.log(longestPalindromicSubstring("anc")) //""
