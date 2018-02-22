@@ -1,0 +1,92 @@
+Given an array of integers, return how long (in seconds) it will take to process
+all of the numbers.
+
+1) Every number takes 1 second to process.
+2) You can only process numbers from left to right.
+3) When you process number N, you need to wait a cool-down time
+equal to N before being able to process the same number (N) again.
+ex:
+[1, 2, 1, 2]
+
+[3, 2, 3, 2]
+
+[8, 2, 8]
+
+[6, 3, 1, 5]
+int calculateProcessingSeconds(int[] number) {
+    HashMap<Integer, Integer> seen = new HashMap<Integer, Integer>();
+
+   int totalSec = 0;
+    for(int i=0;i<number.length; i++){
+        if(seen.containsKey(number[i])){
+            int indexDiff = i - seen.get(number[i]);
+            totalSec += 1 + (number[i] - indexDiff); // Math.max(......, 0)
+        }else{
+            totalSec++;
+        }
+        // totalSec++
+        seen.add(number[i], i); // totalSec
+    }
+
+   return totalSec;
+}
+
+
+function calculateProcessingSeconds(arr){
+  let lastSeen = {};
+
+  let totalSec =0;
+
+  for(let i = 0; i< arr.length; i++){
+    let number = arr[i]
+    if(number in lastSeen){
+      let indexDiff = i - lastSeen(number);
+      totalSec += 1+ (number[i] - indexDiff)
+    }else{
+      totalSec++
+    }
+    lastSeen[number] = i
+  }
+  return totalSec;
+}
+
+
+function numOfTriangles(arr){
+    if(arr.length === 0){ return []};
+    let possibleTriangle = new Set();
+    let count = 0;
+
+    //sort the arr
+    let orderedArray = arr.sort();
+
+    // check for all the numbers after
+     // z - j -1
+    for(let i = 0; i< orderedArray.length; i++){
+        for(let j = i+1; j < orderedArray.length; j++){
+            let difference = sum - arr[i]- arr[j]
+            if(binarySearch(orderedArray, difference) !== 1){
+              possibleTraingle.add(arr[i], arr[j], difference);
+              count++
+            }
+   }
+
+  return count;
+}
+
+
+function binarySearch(arr, target){
+    let mid, start = 0, end = arr.length -1;
+
+    while(start < end){
+        mid = Math.floor((start+end))/2;
+        if(target === arr[mid]){
+            return mid;
+        }else if(target < arr[mid]){
+            end--
+        }else{
+            start++
+        }
+    }
+
+    return -1;
+}

@@ -53,7 +53,7 @@ function numOfTriangles(arr){
                 if(sum > arr[z]){
                     if (!possibleTriangle.has([arr[i], arr[j], arr[z]]){
                         count++;
-                        possibleTriangle.set([arr[i], arr[j], arr[z]])
+                        possibleTriangle.add([arr[i], arr[j], arr[z]])
                     }
 
                 }
@@ -76,16 +76,11 @@ function numOfTriangles(arr){
      // z - j -1
     for(let i = 0; i< orderedArray.length; i++){
         for(let j = i+1; j < orderedArray.length; j++){
-            let sum = arr[i] + arr[j];
-            let target;
-            if(sum - arr[i]- arr[z] > 0){
-                target = sum -arr[i] - arr[z];
-                if(binarySearch(orderedArray, target) !==1){
-                    count++
-                }
+            let difference = sum - arr[i]- arr[j]
+            if(binarySearch(orderedArray, difference) !== 1){
+              possibleTraingle.add(arr[i], arr[j], difference);
+              count++
             }
-
-    }
    }
 
   return count;
