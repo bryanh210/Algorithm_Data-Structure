@@ -31,3 +31,19 @@ bool isDeadEnd(Node *root)
 
     return false ;
 }
+
+function isDeadEnd(root){
+  if(!root) return false;
+  let all_nodes = new Set();
+  let leaf_nodes = new Set();
+
+  all_nodes.add(0);
+
+  function storeNodes(root, all_nodes, leaf_nodes){
+    for(let i = 0; i< leaf_nodes.length; i++){
+      let x = x* i
+    }
+
+    if(all)
+  }
+}
