@@ -6,6 +6,8 @@ function numOfPathsToDest(n) {
         return 0;
     }
 
+
+// starting value
     var dp = [[1]];
 
 
@@ -16,6 +18,7 @@ function numOfPathsToDest(n) {
   console.log(dp)
 
     for(var j = 1; j < n; j++){
+      // this is important
         dp.push([]);
         dp[j][0] = 1;
     }
