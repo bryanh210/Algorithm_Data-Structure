@@ -1,5 +1,6 @@
 function flattenArray(arr) {
-  var array = [];
+
+  var result = [];
   while(arr.length) {
     // pop from the beginning EVERY TIME
     // THIS CHANGES THE ARR: IMPORTANT
@@ -12,12 +13,13 @@ function flattenArray(arr) {
       arr = value.concat(arr);
       console.log(arr, "after arr")
     } else {
-      array.push(value);
+      result.push(value);
 
     }
   }
-  return array;
+  return result;
 }
+
 
 
 /* RECURSION ==== WHILE */

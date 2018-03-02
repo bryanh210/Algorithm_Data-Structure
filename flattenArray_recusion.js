@@ -2,6 +2,7 @@ function flattenArray(arr){
   let result = [];
   arr.forEach((item) =>{
     if(Array.isArray(item)){
+      //[].concat something is gonna put the item in
       result = result.concat(flattenArray(item))
     } else{
       result.push(item)

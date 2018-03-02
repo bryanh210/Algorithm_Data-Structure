@@ -14,7 +14,7 @@ function findArrayQuadruplet(arr, s) {
       low = j+1;
       let difference = s- (arr[i] + arr[j]);
 
-      while(low < high){
+      while(low <= high){
         if(arr[low] + arr[high] < difference){
           low++
         } else if(arr[low] + arr[high] > difference){

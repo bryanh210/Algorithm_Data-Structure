@@ -36,10 +36,13 @@ var lowestCommonAncestor = function(root, node1, node2) {
   let left = lowestCommonAncestor(root.left, node1, node2);
   let right = lowestCommonAncestor(root.right, node1, node2);
 
+// all the way to the left and all the way to the right we found nodes p and q
   if(left && right ){
      // p and q are on two different side of root node.
      return root
    };
+
+   // if we cannot find the nodes on the left or right
   if(!left && !right) { return null};
 
   //else p or q is on the the same side
@@ -51,7 +54,14 @@ var lowestCommonAncestor = function(root, node1, node2) {
 console.log(lowestCommonAncestor(five,four, nine))
 console.log(lowestCommonAncestor(five,four))
 
+
+
 /*
+
+TRICK: WRITE OUT THE CALL STACKS
+THE SECOND TIER OF THE CALL STACK IS LCA(5,6,5)
+IT WILL ALSO GO TO THE LEFT FIRST AFTER IT GOES TO THE RIGHT ONCE BECAUSE THE RIGHT() GOES THROUGH FROM TOP DOWN OF THE FUNCTION
+AGAIN, AND HIT LEFT FIRST
 
 Strategy: if you found both p or q, that means left and right
 aren't null, you return the node immediately before that (which

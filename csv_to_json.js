@@ -1,5 +1,5 @@
 function csvToJSON(str){
-  debugger;
+
   let lines = str.split("\n");
   //because it's 1 big chunk. lines[0] is just that
   let spaces = lines[0].split(",");
