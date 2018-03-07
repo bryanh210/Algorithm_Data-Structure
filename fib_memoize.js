@@ -1,5 +1,5 @@
 function fib(num){
-  let memo = {}:
+  let memo = {};
 
   if(num < 0) { return new Error("Only positive number accepted")};
   if(num === 0 || num === 1){
@@ -13,7 +13,7 @@ function fib(num){
   let result = fib(num -1) + fib(num -2);
   memo[num] = result;
 
-  return result;
+  return memo[num]
 
 
 }

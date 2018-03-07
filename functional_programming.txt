@@ -1,0 +1,21 @@
+Functional Programming:
+
+Pure function: A function that doesn't have an external state and return the same output every time for the same input
+Ex:
+square(x){
+return x*x
+}
+
+This is not pure:
+y+1;
+
+func(x){
+y = y+1
+
+return x+y
+}
+
+
+When to use FP vs OOP?
+A: Use FP for rest API (cuz rest= stateless).ackend doesn't store http
++) Promises & Callback: is related to FP (to escape call back hell) 

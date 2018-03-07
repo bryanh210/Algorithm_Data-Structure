@@ -39,7 +39,7 @@ function traverseIsland(row, col, grid){
       stack.push(grid[i+1,j]);
       stack.push(grid[i-1,j]);
       stack.push(grid[i,j+1]);
-      stack.push(grid[i,j-san 1]);
+      stack.push(grid[i,j- 1]);
     }
   }
 }
