@@ -17,6 +17,8 @@ function minCoinChange(n,denoms){
   for(const denom of denoms){
     for(let amount = 0; amount < numOfCoins.length; amount++){
       if(denom <= amount){
+        // amount -denom: the number of coins to make 7 from 5
+        // so 1+1 is 2 cuz we need 1 coin regardless
         numOfCoins[amount] = Math.min(numOfCoins[amount], numOfCoins[amount-denom] +1)
       }
     }
@@ -24,6 +26,7 @@ function minCoinChange(n,denoms){
 
   //numOfCoins[n], not n+1 because when we start from 0, index n is actually the end of the array
 
+// if cant make combination with amount, then gives -1
   return numOfCoins[n] === Infinity? -1 : numOfCoins[n]
 
 }

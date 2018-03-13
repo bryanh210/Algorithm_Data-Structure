@@ -1,10 +1,10 @@
 function flattenArray(arr) {
 
-  var result = [];
-  while(arr.length) {
+  const result = [];
+  while(arr.length >0) {
     // pop from the beginning EVERY TIME
     // THIS CHANGES THE ARR: IMPORTANT
-    var value = arr.shift();
+    const value = arr.shift();
 
     if(Array.isArray(value)) {
       // this line preserve the order
@@ -20,7 +20,7 @@ function flattenArray(arr) {
   return result;
 }
 
-
+flattenArray([[1,2],3,4])
 
 /* RECURSION ==== WHILE */
 
@@ -30,13 +30,15 @@ function flattenArray(arr){
   let result = [];
 
   while(arr.length > 0){
-    let value = arr.shift();
+    const value = arr.shift();
     if(Array.isArray(value)){
       arr = value.concat(arr)
     }else{
-      arr.push(value)
+      result.push(value)
     }
   }
 
   return arr;
 }
+
+flattenArray([[1,2],3,4])

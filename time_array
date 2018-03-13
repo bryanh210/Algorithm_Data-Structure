@@ -41,7 +41,7 @@ function calculateProcessingSeconds(arr){
     let number = arr[i]
     if(number in lastSeen){
       let indexDiff = i - lastSeen(number);
-      totalSec += 1+ (number[i] - indexDiff)
+      totalSec += 1+ (number - indexDiff)
     }else{
       totalSec++
     }

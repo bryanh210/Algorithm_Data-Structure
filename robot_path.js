@@ -61,5 +61,51 @@ class RobotPaths {
     matrix[y][x] = 0;
   }
 
+}
+
+
+function robotPath(n){
+  let count = 0;
+  let matrix = [];
+
+  for(let i = 0; i< n.length ; i++){
+    matrix[i] = [];
+    for(let j = 0; j< n.length; j++){
+      matrix[i][j] = 0;
+    }
+  }
+
+  traverse(0,0, matrix);
+
+  return count;
+}
+
+function traverse(i,j, matrix){
+  //base cases
+  if (x < 0 || y < 0 || x >= matrix[0].length || y >= matrix.length) {
+    return;
+  } else if (matrix[y][x] == 1) {
+    return;
+  } else if (y == matrix.length - 1 && x == matrix[0].length - 1) {
+    count++;
+    return;
+  }
+
+  matrix[y][x] = 1;
+  
+  traverse(x+1, y);
+  // with the example above, if it's out of bound for x
+  // it will return back to the third (1) on line 1
+  // then it will decrease to x-1 and see that we have been there (1)
+  traverse(x-1, y);
+  // so we return back to the first function. we see a 1
+  // so we're gonna go down to y+1 (positive = increase for y)
+  // here we hit the third base case, then we increase count
+  // then now, we're going up from the beginning
+  traverse(x, y+1);
+  traverse(x, y-1);
+
+  // turn it back to 0 so we can start fresh finding another path
+  matrix[y][x] = 0;
 
 }
