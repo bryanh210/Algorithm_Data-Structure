@@ -14,8 +14,8 @@ so if it's divisible by another number, it's false
 
 function printPrime(limit){
   const prime = [2];
-
-  for(let i = 2; i< limit; i+=2){
+  // starts at 3
+  for(let i = 3; i< limit; i+=2){
     if(checkPrime(i)){
       prime.push(i);
     }
@@ -32,4 +32,4 @@ function checkPrime(num){
   return true;
 }
 
-printPrime(100)
+console.log(printPrime(100))
