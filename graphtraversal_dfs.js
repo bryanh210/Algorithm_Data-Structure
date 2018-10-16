@@ -63,6 +63,7 @@ function dfs(vertex) {
      // node is a an item on the array
      if(!visited.has(node)){
       visited.add(node);
+      // new nodes branching from edge are being added to stack
      stack.push(node);
      }
 
