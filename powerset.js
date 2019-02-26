@@ -1,11 +1,13 @@
 function powerSet(arr){
-  debugger;
   const subsets = [[]];
   for(const ele of arr){
     const length = subsets.length;
+    console.log(length, 'subsets.length');
     for(let i = 0; i< length; i++){
       const currentSubset = subsets[i];
-      subsets.push(currentSubset.concat(ele))
+      console.log(currentSubset, 'currentSubset');
+      subsets.push(currentSubset.concat(ele));
+      console.log(subsets, 'subsets');
     }
   }
   return subsets
