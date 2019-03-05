@@ -119,6 +119,25 @@ def powerset(input):
 
   if (m < 0) or (n < 0): return 0
   if (m == 0) and (n == 0): return 1
-
+  // goes from the bottom right, move to left and move up
   return lattice_paths(m - 1, n) + lattice_paths(m, n - 1)
  
+// if we move right and down we need to use helper recursion cuz we don't have if (m == 0) and (n == 0): return 1
+
+def lattice_paths(m, n):
+
+#1,1: moving right and down
+  def lattice_rec(m_rec, n_rec):
+      # if we're out of bound, larger than m or n
+    if m_rec > m or n_rec > n:
+      return 0
+      # when we hit the bottom right coordinate
+    if m_rec == m and n_rec == n:
+      return 1
+
+    return lattice_rec(m_rec+1, n_rec) + lattice_rec(m_rec, n_rec+1)
+   
+  
+  print (mem)
+  print (lattice_rec(0, 0))
+  return lattice_rec(0, 0)
