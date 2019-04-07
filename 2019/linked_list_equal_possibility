@@ -1,0 +1,159 @@
+
+// Linked Lists
+// 1. Linear Data Structures
+// 2. Consist of Nodes
+// 3. Properties of Node
+//    - Value
+//    - Next
+// 4. Insertion and Deletion is Constant Time.
+
+//  h
+// <1> --> <2> --> <3> --> <4> --> <5>
+// removing first element from a linked list is O(1)
+// FIFO: Queue
+
+// [2, 3, 4, 5]
+// removing first element from an array is O(N)
+
+
+// Access to the head node is constant
+
+// Doubly Linked List
+// <1> <--> <2> <--> <3> <--> <4> <--> <5>
+// LRU Cache
+
+
+//
+// Input: Head node of a Linked List
+//  h
+// <1> --> <2> --> <3> --> <4> --> <5>
+// Output: Return a random value within the Linked List
+// Caveat: Every value should have an equal probability of being outputted.
+
+
+// <1> --> <2> --> <3> --> <4> --> <5>
+
+// Brute Force
+// get the length of the linked list - O(N)
+// generate a random number between 1 and the length --> O(1)
+// iterate n number of times and return resulting value at node. O(N)
+
+// Time: O(N) -- one pass
+// Space: O(1)
+
+// Solving this in one pass:
+
+// probability of returning 1
+
+//
+//  1: <1> --> <2> --> <3> --> <4> --> <5>
+//      1  *  (1/2) * (2/3) * (3/4) * (4/5) = 1/5
+//  2: <1> --> <2> --> <3> --> <4> --> <5>
+//      1  *  (1/2) * (2/3) * (3/4) * (4/5) = 1/5
+//  3: <1> --> <2> --> <3> --> <4> --> <5>
+//          1       * (1/3) * (3/4) * (4/5) = 1/5
+//  4: <1> --> <2> --> <3> --> <4> --> <5>
+//           1        *       (1/4) * (4/5) = 1/5
+//  5: <1> --> <2> --> <3> --> <4> --> <5>
+//              1        *            (1/5) = 1/5
+
+// value = 4
+
+// length = 5
+// probability: 1/5
+// formula: random val (0, 1) < 1
+
+// return 4
+
+// PSEUDOCODE:
+// initialize length, value, current
+// while current is not null
+//  increment the length
+//  calculate probability of updating current value
+//  if probability is less than 1/length
+//    update value to current value
+//  reassign current to current.next
+// return value
+
+
+
+// probability of choosing current node: 1/length
+// probability: 50%
+
+// Result of calling randomGenerator function to output random values
+// from the linked list 100 times.
+// {
+//  1: 20
+//  2: 20
+//  3: 20
+//  4: 20
+//  5: 20
+//}
+
+
+// Node class for a linked list node
+class ListNode {
+  constructor(value = null) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+
+// DO NOT EDIT
+// Generate a linked list from an array
+function generateList(arr) {
+  if (arr.length === 0) { return null; }
+  let head = new ListNode(arr[0]);
+  let current = head;
+  for (let i = 1; i < arr.length; i++) {
+    current.next = new ListNode(arr[i]);
+    current = current.next;
+  }
+  return head;
+}
+
+let head = generateList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+// PSEUDOCODE:
+// initialize length, value, current
+// while current is not null
+//  increment the length
+//  calculate probability of updating current value
+//  if probability is less than 1/length
+//    update value to current value
+//  reassign current to current.next
+// return value
+
+
+function randomListNode(head) {
+  let length = 0,
+      value = null,
+      current = head;
+  while (current !== null) {
+    length ++;
+    if ( (Math.floor(Math.random() * length) + 1) <  parseInt((1/length)*10) ) {
+      value = current.value;
+    }
+    current = current.next;
+  }
+  return value;
+}
+
+
+function proof(head, n) {
+  let count = {}
+  current = head;
+  while (current !== null) {
+    count[current.value] = 0
+    current = current.next;
+  }
+  while (n > 0) {
+    let result = randomListNode(head);
+    count[result] += 1
+    n--;
+  }
+  return count;
+}
+
+console.log(proof(head, 500000))

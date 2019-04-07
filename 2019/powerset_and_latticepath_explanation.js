@@ -48,9 +48,23 @@ When I return, I go back to the previous value stored in memory
 
 
 
-function powerset(str) {
-  // YOUR WORK HERE
-}
+ function powerset(str) {
+   const result = [];
+   function traverse(build, index) {
+     if(index === str.length){
+       result.push(build);
+       return;
+     }
+     traverse(build, index+1);
+     // look at diagram. Example is "" + str[index]
+     traverse(build + str[index], index+1);
+   }
+
+   traverse("", 0)
+   return result;
+ }
+
+ powerset('abc');
 
 def powerset(input):
   result = []
@@ -121,7 +135,7 @@ def powerset(input):
   if (m == 0) and (n == 0): return 1
   // goes from the bottom right, move to left and move up
   return lattice_paths(m - 1, n) + lattice_paths(m, n - 1)
- 
+
 // if we move right and down we need to use helper recursion cuz we don't have if (m == 0) and (n == 0): return 1
 
 def lattice_paths(m, n):
@@ -136,8 +150,8 @@ def lattice_paths(m, n):
       return 1
 
     return lattice_rec(m_rec+1, n_rec) + lattice_rec(m_rec, n_rec+1)
-   
-  
+
+
   print (mem)
   print (lattice_rec(0, 0))
   return lattice_rec(0, 0)
